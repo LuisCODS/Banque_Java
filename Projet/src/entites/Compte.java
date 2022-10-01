@@ -13,17 +13,41 @@ public abstract class  Compte {
     private String  titulaire;
     private Client  client;
     private Date    dateOuverture,dateFermeture;
-    static int      totalDeCompte;    
+     static int     totalDeCompte;    
     
     // ================== Methodes ================== 
     
-    abstract public void ouvriCompte();
-    abstract public void fermerCompte(); 
+    public void ouvriCompte(){
+        
+    }
+    public void fermerCompte(){
+        
+    }
     abstract public void chargerFrais();
-    abstract public void getTotalCompte();
-    abstract public boolean retrait(double montant);
-    abstract public void depot(double montant);
-    abstract public boolean transfererVers(Compte c, double montant);  
+    
+    public void getTotalCompte(){
+        
+    }     
+    public void depot(double montant){
+        this.setSolde(montant);
+    }   
+    public boolean transfererVers(Compte destin, double montant) {
+        if(this.retrait(montant)) {
+            destin.depot(montant);
+            return true;
+        }else{
+            return false;
+        }        
+    }
+        
+    public  boolean retrait(double montant) {        
+        if (this.solde < montant) {
+            return false;
+        }else{
+            this.solde -= montant;
+            return true;
+        }
+    }
     
     // ================== Get & Sets ==================
     
