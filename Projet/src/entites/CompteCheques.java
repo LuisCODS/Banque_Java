@@ -1,29 +1,30 @@
-package projet;
+package entites;
 
-public class CompteEpargne extends Compte{
-        
+public class CompteCheques extends Compte {
+
+    // Contructeur    
+    public CompteCheques() {
+        Compte.totalDeCompte++;
+    }
+
      // ================== Methodes ================== 
     
     @Override
     public void ouvriCompte() {
   
     }
-
     @Override
     public void fermerCompte() {
         
     }
-
     @Override
     public void chargerFrais() {
         
     }
-
     @Override
     public void getTotalCompte() {
         
     }
-
     @Override
     public  boolean retrait(double montant) {        
         if (this.getSolde() < montant) {

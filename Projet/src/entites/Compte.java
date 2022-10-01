@@ -1,17 +1,18 @@
-package projet;
+package entites;
+
+import req.Date;
 
 public abstract class  Compte {
     
     // ================== Attributs ==================
     
     private int     numero;
-    private double  solde;
+    private double  solde, salaire;
     private boolean isOpen;
     private char    type;
     private String  titulaire;
     private Client  client;
-    private Date    dateOuverture;
-    private Date    dateFermeture;
+    private Date    dateOuverture,dateFermeture;
     static int      totalDeCompte;    
     
     // ================== Methodes ================== 
@@ -32,5 +33,11 @@ public abstract class  Compte {
     public void setSolde(double solde) {
         this.solde = solde;
     }
+
+    public static int getTotalDeCompte() {
+        return totalDeCompte;
+    }
+
+ 
     
 }
