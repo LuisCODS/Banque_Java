@@ -1,15 +1,11 @@
 package entites;
-
 public class CompteEpargne extends Compte{        
-
-    // Contructeur    
+    // Constructeur    
     public CompteEpargne() {
         Compte.totalDeCompte++;
     }
- 
+    //  Methodes  
     @Override
-    public void chargerFrais() {
-        
+    public void chargerFrais() {  
     }
- 
 }

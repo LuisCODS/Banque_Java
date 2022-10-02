@@ -1,17 +1,12 @@
 package entites;
-
 public class CompteCheques extends Compte {
-
-    // Contructeur    
+    // Constructeur    
     public CompteCheques() {
         Compte.totalDeCompte++;
     }
-
-    // ================== Methodes ==================    
-
+    //  Methodes     
     @Override
     public void chargerFrais() {
         
     }
- 
 }

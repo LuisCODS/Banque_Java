@@ -4,7 +4,7 @@ import req.Date;
 
 public abstract class  Compte {
     
-    // ================== Attributs ==================
+    // ================== ATTRIBUTS ==================
     
     private int     numero;
     private double  solde, salaire;
@@ -13,31 +13,39 @@ public abstract class  Compte {
     private String  titulaire;
     private Client  client;
     private Date    dateOuverture,dateFermeture;
-     static int     totalDeCompte;    
+    static int     totalDeCompte;    
     
-    // ================== Methodes ================== 
+    // ================== CONSTRUCTEUR ==================
+    
+    public Compte(){
+    
+    }
+    // ================== MÉTHODES ================== 
     
     public void ouvriCompte(){
-        
+        this.isOpen = true;
     }
     public void fermerCompte(){
-        
+        this.isOpen = false;        
     }
+    // chaque classe a une charge differente
     abstract public void chargerFrais();
-    
-    public void getTotalCompte(){
-        
-    }     
+   
     public void depot(double montant){
         this.setSolde(montant);
-    }   
-    public boolean transfererVers(Compte destin, double montant) {
-        if(this.retrait(montant)) {
+    }    
+    /*
+        Transfer un montant entre 2 comptes en verifient si le compte
+        d'origine a le solde pour l'operation.
+        Retourne true si oui, false sinon.
+    */
+    public boolean transfererVers(Compte destin, double montant) {        
+        if(this.retrait(montant)) {                    
             destin.depot(montant);
-            return true;
-        }else{
-            return false;
-        }        
+            return true;            
+        }else{                     
+            return false;            
+        }                
     }
         
     public  boolean retrait(double montant) {        
@@ -49,19 +57,22 @@ public abstract class  Compte {
         }
     }
     
-    // ================== Get & Sets ==================
+    // ================== GETS & SETS ==================
     
     public double getSolde() {
         return this.solde;
     }
     public void setSolde(double solde) {
-        this.solde = solde;
+        this.solde += solde;
     }
-
     public static int getTotalDeCompte() {
         return totalDeCompte;
     }
-
- 
+    public Client getClient() {
+        return client;
+    }
+    public void setClient(Client client) {
+        this.client = client;
+    }
     
 }
