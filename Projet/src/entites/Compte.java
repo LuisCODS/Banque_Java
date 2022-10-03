@@ -10,16 +10,16 @@ public abstract class  Compte {
     private int     numero;
     private double  solde, salaire;
     private boolean isOpen;
-    private char    type;
-    private String  titulaire;
+    private char    type;  
     private Client  client;
     private Date    dateOuverture,dateFermeture;
-    static int     totalDeCompte;    
+    static int      totalDeCompte;    
     
     // ================== CONSTRUCTEUR ==================
     
     public Compte(Date date){
-        this.setDateOuverture(date);
+        setDateOuverture(date);
+        setIsOpen(true);
     }
     // ================== MÉTHODES ================== 
     
@@ -75,22 +75,36 @@ public abstract class  Compte {
     public void setClient(Client client) {
         this.client = client;
     }
-
     public String getDateOuverture() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");         
-        return formatter.format(this.dateOuverture);        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String dataFormate = formatter.format(this.dateOuverture);  
+        return dataFormate;      
     }
-
     public void setDateOuverture(Date dateOuverture) {
         this.dateOuverture = dateOuverture;
     }
-
     public Date getDateFermeture() {
         return dateFermeture;
     }
-
     public void setDateFermeture(Date dateFermeture) {
         this.dateFermeture = dateFermeture;
     }
+    public boolean isIsOpen() {
+        return isOpen;
+    }
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }   
+
+    @Override
+    public String toString() {
+        String donnes = "Compte :\n";
+               donnes += "- Date Ouverture: " + this.getDateOuverture() + "\n";
+               donnes += "- Solde : $" + this.getSolde()+"\n";
+               donnes += "- Client : " + this.getClient().getNom() + " " + this.getClient().getPrenom() + "\n";
+        return donnes;
+    }
+    
+    
     
 }

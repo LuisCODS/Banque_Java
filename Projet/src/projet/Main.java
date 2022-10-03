@@ -8,23 +8,22 @@ import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) {        
-        
-        System.out.println("Total de clients : " + Client.getTotalDeClient());  
-        System.out.println("Total de comptes : " + Compte.getTotalDeCompte()+"\n"); 
+    public static void main(String[] args) {      
         
         Client client = new Client(); 
-        client.setPrenom("Luis");         
-        Date date = new Date();        
-        // Polymorphisme de reference  
-        Compte cheque = new CompteCheques(date); 
-        cheque.depot(1000);    
- 
-        cheque.setClient(client);         
-        Compte epargne = new CompteEpargne(date);                                
-
- 
+        client.setPrenom("Luis");  
+        client.setNom("Santos");
         
+        // Polymorphisme de reference  
+        Compte cheque = new CompteCheques(new Date()); 
+        cheque.depot(1000); 
+        cheque.setClient(client);
+        
+        Compte epargne = new CompteEpargne(new Date());  
+        
+        System.out.println("LA BANQUE");
+        System.out.println("Total de clients : " + Client.getTotalDeClient());  
+        System.out.println("Total de comptes : " + Compte.getTotalDeCompte()+"\n");       
         // ============== TEST RETRAIT ==============
         /*
         if (cheque.retrait(200)){ 
@@ -41,5 +40,7 @@ public class Main {
             System.out.println("Não consegui transferi");
         }                  
          cheque.depot(500);
+         
+          System.out.println(cheque.toString());
     }    
 }
