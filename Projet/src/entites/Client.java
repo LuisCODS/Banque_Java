@@ -1,8 +1,5 @@
 package entites;
 
-import static entites.Compte.totalDeCompte;
-
-
 public class Client {
     
     // ================== ATTRIBUTS ==================

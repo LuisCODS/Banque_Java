@@ -1,6 +1,7 @@
 package entites;
 
-import req.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public abstract class  Compte {
     
@@ -17,8 +18,8 @@ public abstract class  Compte {
     
     // ================== CONSTRUCTEUR ==================
     
-    public Compte(){
-    
+    public Compte(Date date){
+        this.setDateOuverture(date);
     }
     // ================== MÉTHODES ================== 
     
@@ -73,6 +74,23 @@ public abstract class  Compte {
     }
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public String getDateOuverture() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");         
+        return formatter.format(this.dateOuverture);        
+    }
+
+    public void setDateOuverture(Date dateOuverture) {
+        this.dateOuverture = dateOuverture;
+    }
+
+    public Date getDateFermeture() {
+        return dateFermeture;
+    }
+
+    public void setDateFermeture(Date dateFermeture) {
+        this.dateFermeture = dateFermeture;
     }
     
 }

@@ -4,30 +4,26 @@ import entites.CompteCheques;
 import entites.Compte;
 import entites.Client;
 import entites.CompteEpargne;
+import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
         
-        // Polymorphisme de reference     
-        Client c = new Client();
-        Compte cheque = new CompteCheques();
-        Compte epargne = new CompteEpargne();
+        System.out.println("Total de clients : " + Client.getTotalDeClient());  
+        System.out.println("Total de comptes : " + Compte.getTotalDeCompte()+"\n"); 
         
-        c.setPrenom("Luis");      
-               
-        // Get total d'instances Client
-        System.out.println("Total de clients : " + Client.getTotalDeClient() +"\n");   
-        
+        Client client = new Client(); 
+        client.setPrenom("Luis");         
+        Date date = new Date();        
+        // Polymorphisme de reference  
+        Compte cheque = new CompteCheques(date); 
         cheque.depot(1000);    
-        cheque.setClient(c);
-        
-        // Prend le client lié au compte
-        System.out.println("Nom du Client : "   + cheque.getClient().getPrenom()+"\n");
-        
-        System.out.println("Total de comptes : "                + Compte.getTotalDeCompte()+"\n"); 
-        System.out.println("Solde du compte cheque avant : "    + cheque.getSolde());
-        System.out.println("Solde du compte epargne avant : "   + epargne.getSolde()+"\n");
+ 
+        cheque.setClient(client);         
+        Compte epargne = new CompteEpargne(date);                                
+
+ 
         
         // ============== TEST RETRAIT ==============
         /*
@@ -38,21 +34,12 @@ public class Main {
             System.out.println("Não consegui sacar");   
         }
         */
-
         // ============== TEST TRANSFERT ==============
-        if (cheque.transfererVers(epargne, 200)) {
-            
-            System.out.println("Transfer de 200 du compte cheque vers le compte epargne done! \n");
-            System.out.println("Solde du compte cheque apres "  + cheque.getSolde()); 
-            System.out.println("Solde du compte epargne apres " + epargne.getSolde()); 
-            
+        if (cheque.transfererVers(epargne, 200)) {          
+            System.out.println("Transfer de 200 du compte cheque vers le compte epargne, done! \n");          
         }else{
             System.out.println("Não consegui transferi");
-        }      
-             
-         cheque.depot(500);  
-         System.out.println("Solde du compte cheque apres depot de 500 :"  + cheque.getSolde()); 
-
-    }
-    
+        }                  
+         cheque.depot(500);
+    }    
 }
