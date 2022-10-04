@@ -17,7 +17,7 @@ public class Test_retrait {
         Compte cheque = new CompteCheques(new Date(), client); 
         cheque.depot(montantDepot);         
         
-        System.out.println("Solde AVANT : $"+ cheque.getSolde()); 
+        System.out.println("Dépôt de $"+ cheque.getSolde()); 
         // ============== TEST RETRAIT ==============        
         if (cheque.retrait(montantRetrait)){ 
             System.out.println("=============================");  

@@ -21,6 +21,7 @@ public abstract class Compte {
         this.setDateOuverture(date);
         this.setIsOpen(true);
         this.setClient(client);
+        this.checkTypeCompte();
     }
     // ================== MÉTHODES ================== 
     
@@ -80,6 +81,13 @@ public abstract class Compte {
         }
     }
     
+    private void checkTypeCompte(){           
+        if (this instanceof CompteEpargne) {
+            this.setType('E');
+        }else{
+            this.setType('C');
+        }        
+    }
     // ================== GETS & SETS ==================
     
     public double getSolde() {
@@ -127,14 +135,33 @@ public abstract class Compte {
     private void setIsOpen(boolean isOpen) {
         this.isOpen = isOpen;
     }   
+
+    private void setType(char type) {
+        this.type = type;
+    }
+    
+    public String getType() {
+        
+        if (this.type == 'C') {
+            return "<< Cheque >>";
+        }else{
+            return "<< Épargne >>";
+        }
+        
+    }
    
+    
     @Override
     public String toString() {
-        String donnes = "Détails du Compte :\n";
-               donnes += "- Ouverte : "         + this.getIsOpen() + "\n";
-               donnes += "- Date Ouverture: "   + this.getDateOuverture() + "\n";
-               donnes += "- Solde actuelle: $"  + this.getSolde()+"\n";
-               donnes += "- Client : "          + this.getClient().getNom() + " " + this.getClient().getPrenom() + "\n";
-        return donnes;
+        
+        String donnes = "\n";
+               donnes += "============================= ";
+               donnes += "Détails du Compte "    + this.getType()            + "\n";
+               donnes += "- Ouverte : "          + this.getIsOpen()          + "\n";
+               donnes += "- Date Ouverture: "    + this.getDateOuverture()   + "\n";
+               donnes += "- Solde actuelle: $"   + this.getSolde()           +"\n";
+               donnes += "- Client : "           + this.getClient().getNom() + " " + this.getClient().getPrenom();
+               
+               return donnes;
     }        
 }

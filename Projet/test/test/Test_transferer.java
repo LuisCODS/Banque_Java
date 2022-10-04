@@ -10,26 +10,29 @@ public class Test_transferer {
 
     public static void main(String[] args) {      
         
-        Client client = new Client("Santos","Luis"); 
+        double montantDepot = 1000.00;
+        double montant      = 200.00;
         
+        Client c1 = new Client("Santos","Luis"); 
+        Client c2 = new Client("Bastos","Andrea"); 
         // Polymorphisme de reference  
-        Compte cheque = new CompteCheques(new Date(), client); 
-        cheque.depot(1000); 
-        
-        Compte epargne = new CompteEpargne(new Date(), client);  
+        Compte cheque = new CompteCheques(new Date(), c1); 
+        cheque.depot(montantDepot);         
+        Compte epargne = new CompteEpargne(new Date(), c2);  
         
         System.out.println("LA BANQUE");
         System.out.println("Total de clients : " + Client.getTotalDeClient());  
-        System.out.println("Total de comptes : " + Compte.getTotalDeCompte()+"\n");  
-                        
+        System.out.println("Total de comptes : " + Compte.getTotalDeCompte()+"\n");         
+        System.out.println("Solde compte " + cheque.getType()+ " AVANT tranfert : $" +cheque.getSolde());
+        
         // ============== TEST TRANSFERT ==============
-        if (cheque.transfererVers(epargne, 200)) {          
-            System.out.println("Transfer de 200 du compte cheque vers le compte epargne, done! \n");          
+        if (cheque.transfererVers(epargne, montant)) {   
+            System.out.println("OPERATION: Transfer de $200 du compte cheque vers le compte epargne!");
         }else{
-            System.out.println("Não consegui transferi");
-        }                  
-        //cheque.depot(500);
-         
-          System.out.println(cheque.toString());
+            System.out.println("ERREUR: échec dans le tranfert!");
+        }               
+       
+        System.out.println(cheque.toString());
+        System.out.println(epargne.toString());
     }    
 }
