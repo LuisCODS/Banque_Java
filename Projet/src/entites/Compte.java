@@ -3,7 +3,7 @@ package entites;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class  Compte {
+public abstract class Compte {
     
     // ================== ATTRIBUTS ==================
     
@@ -17,28 +17,44 @@ public abstract class  Compte {
     
     // ================== CONSTRUCTEUR ==================
     
-    public Compte(Date date){
-        setDateOuverture(date);
-        setIsOpen(true);
+    public Compte(Date date, Client client){
+        this.setDateOuverture(date);
+        this.setIsOpen(true);
+        this.setClient(client);
     }
     // ================== MÉTHODES ================== 
     
     public void ouvriCompte(){
         this.isOpen = true;
     }
+    
     public void fermerCompte(){
         this.isOpen = false;        
     }
-    // chaque classe a une charge differente
+    
+    // Chaque classe doit implementer ses frais(possibilité interface)!
     abstract public void chargerFrais();
-   
-    public void depot(double montant){
-        this.setSolde(montant);
+    
+    /**
+    * Fait un depot en vérifiant si le montant est valide.
+    * @param montant: le montant souhaité
+    * @return true ou false si l'operation s'est bien passé.
+    */
+    public boolean depot(double montant){      
+        if (montant > 0) {
+            this.solde += montant;
+            return true;
+        }else{
+            return false;
+        }
     }    
-    /*
-        Transfer un montant entre 2 comptes en verifient si le compte
-        d'origine a le solde pour l'operation.
-        Retourne true si oui, false sinon.
+    
+    /**
+    * Transfer un montant entre 2 comptes en verifient si le compte
+    * d'origine a le solde pour l'operation.
+    * @param montant: le montant souhaité du tranfert;
+    * @param destin: le compte a recevoir le crédit;
+    * @return true ou false si l'operation s'est bien passé.
     */
     public boolean transfererVers(Compte destin, double montant) {        
         if(this.retrait(montant)) {                    
@@ -48,9 +64,15 @@ public abstract class  Compte {
             return false;            
         }                
     }
-        
+   
+    /**
+    * Retrait un montant du compte en vérifiant si le solde est superieur o montant
+    * du retrait ou si le montant est valide.
+    * @param montant: le montant souhaité
+    * @return true si l'operation s'est bien passé, false sinon.
+    */
     public  boolean retrait(double montant) {        
-        if (this.solde < montant) {
+        if ( (this.solde < montant) || (montant <= 0) ) {
             return false;
         }else{
             this.solde -= montant;
@@ -63,48 +85,56 @@ public abstract class  Compte {
     public double getSolde() {
         return this.solde;
     }
-    public void setSolde(double solde) {
-        this.solde += solde;
-    }
+    
     public static int getTotalDeCompte() {
         return totalDeCompte;
     }
+    
     public Client getClient() {
-        return client;
+        return this.client;
     }
-    public void setClient(Client client) {
+    
+    private void setClient(Client client) {
         this.client = client;
-    }
+    }    
+    
+    /**
+    * Formate une date du type Date en String.
+    * @return la date formatée.
+    */
     public String getDateOuverture() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String dataFormate = formatter.format(this.dateOuverture);  
         return dataFormate;      
     }
-    public void setDateOuverture(Date dateOuverture) {
+    
+    private void setDateOuverture(Date dateOuverture) {
         this.dateOuverture = dateOuverture;
     }
+    
     public Date getDateFermeture() {
-        return dateFermeture;
+        return this.dateFermeture;
     }
+    
     public void setDateFermeture(Date dateFermeture) {
         this.dateFermeture = dateFermeture;
     }
-    public boolean isIsOpen() {
-        return isOpen;
+    
+    public boolean getIsOpen() {
+        return this.isOpen;
     }
-    public void setIsOpen(boolean isOpen) {
+    
+    private void setIsOpen(boolean isOpen) {
         this.isOpen = isOpen;
     }   
-
+   
     @Override
     public String toString() {
-        String donnes = "Compte :\n";
-               donnes += "- Date Ouverture: " + this.getDateOuverture() + "\n";
-               donnes += "- Solde : $" + this.getSolde()+"\n";
-               donnes += "- Client : " + this.getClient().getNom() + " " + this.getClient().getPrenom() + "\n";
+        String donnes = "Détails du Compte :\n";
+               donnes += "- Ouverte : "         + this.getIsOpen() + "\n";
+               donnes += "- Date Ouverture: "   + this.getDateOuverture() + "\n";
+               donnes += "- Solde actuelle: $"  + this.getSolde()+"\n";
+               donnes += "- Client : "          + this.getClient().getNom() + " " + this.getClient().getPrenom() + "\n";
         return donnes;
-    }
-    
-    
-    
+    }        
 }

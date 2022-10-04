@@ -10,8 +10,10 @@ public class Client {
     
     // ================== CONSTRUCTEUR ==================
 
-    public Client(){
+    public Client(String nom, String prenom){
         totalDeClient ++;
+        this.setNom(nom);
+        this.setPrenom(prenom);
     }
     
     // ================== GETS & SETS ==================
