@@ -15,9 +15,11 @@ public class Test_transferer {
         
         Client c1 = new Client("Santos","Luis"); 
         Client c2 = new Client("Bastos","Andrea"); 
+        
         // Polymorphisme de reference  
         Compte cheque = new CompteCheques(new Date(), c1); 
-        cheque.depot(montantDepot);         
+        cheque.depot(montantDepot);   
+        
         Compte epargne = new CompteEpargne(new Date(), c2);  
         
         System.out.println("LA BANQUE");

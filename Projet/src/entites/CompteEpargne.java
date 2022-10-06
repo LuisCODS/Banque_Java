@@ -2,11 +2,11 @@ package entites;
 import java.util.Date;
 public class CompteEpargne extends Compte{        
     // Constructeur    
-    public CompteEpargne(Date date, Client client) {        
-        // appel le constructeur de la super classe
-        super(date, client);
-        Compte.totalDeCompte++;
+    public CompteEpargne(Date date, Client client) 
+    {    
+        super(date, client);        
     }
+    
     //  Methodes  
     @Override
     public void chargerFrais() {  

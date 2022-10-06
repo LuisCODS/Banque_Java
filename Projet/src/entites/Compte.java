@@ -7,23 +7,25 @@ public abstract class Compte {
     
     // ================== ATTRIBUTS ==================
     
-    private int     numero;
     private double  solde, salaire;
     private boolean isOpen;
     private char    type;  
     private Client  client;
     private Date    dateOuverture,dateFermeture;
-    static int      totalDeCompte;    
+    private static int numero, totalDeCompte;    
     
     // ================== CONSTRUCTEUR ==================
     
     public Compte(Date date, Client client){
-        this.setDateOuverture(date);
-        this.setIsOpen(true);
+        this.setDateOuverture(date);        
         this.setClient(client);
+        this.setIsOpen(true);
         this.checkTypeCompte();
+        Compte.totalDeCompte = Compte.totalDeCompte + 1;
+        Compte.numero = Compte.numero + 1;
     }
-    // ================== MÉTHODES ================== 
+    
+    // ================== MÉTHODES public ================== 
     
     public void ouvriCompte(){
         this.isOpen = true;
@@ -81,6 +83,8 @@ public abstract class Compte {
         }
     }
     
+// ================== MÉTHODES privés ================== 
+    
     private void checkTypeCompte(){           
         if (this instanceof CompteEpargne) {
             this.setType('E');
@@ -88,24 +92,38 @@ public abstract class Compte {
             this.setType('C');
         }        
     }
-    // ================== GETS & SETS ==================
+
+    private void setClient(Client client) {
+        this.client = client;
+    }    
+    
+    private void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }   
+
+    private void setType(char type) {
+        this.type = type;
+    } 
+     
+    private void setDateOuverture(Date dateOuverture) {
+        this.dateOuverture = dateOuverture;
+    }   
+   
+    
+// ================== GETS & SETS ==================
     
     public double getSolde() {
         return this.solde;
     }
     
-    public static int getTotalDeCompte() {
-        return totalDeCompte;
+    public static int  getTotalDeCompte() {
+        return Compte.totalDeCompte;
     }
     
     public Client getClient() {
         return this.client;
     }
-    
-    private void setClient(Client client) {
-        this.client = client;
-    }    
-    
+      
     /**
     * Formate une date du type Date en String.
     * @return la date formatée.
@@ -115,11 +133,7 @@ public abstract class Compte {
         String dataFormate = formatter.format(this.dateOuverture);  
         return dataFormate;      
     }
-    
-    private void setDateOuverture(Date dateOuverture) {
-        this.dateOuverture = dateOuverture;
-    }
-    
+        
     public Date getDateFermeture() {
         return this.dateFermeture;
     }
@@ -128,18 +142,10 @@ public abstract class Compte {
         this.dateFermeture = dateFermeture;
     }
     
-    public boolean getIsOpen() {
+    public boolean isOpen() {
         return this.isOpen;
     }
-    
-    private void setIsOpen(boolean isOpen) {
-        this.isOpen = isOpen;
-    }   
-
-    private void setType(char type) {
-        this.type = type;
-    }
-    
+      
     public String getType() {
         
         if (this.type == 'C') {
@@ -148,16 +154,22 @@ public abstract class Compte {
             return "<< Épargne >>";
         }
         
+    }   
+
+    public static int getNumero() {
+        return Compte.numero;
     }
-   
+    
     
     @Override
     public String toString() {
         
         String donnes = "\n";
                donnes += "============================= ";
-               donnes += "Détails du Compte "    + this.getType()            + "\n";
-               donnes += "- Ouverte : "          + this.getIsOpen()          + "\n";
+               donnes += " Détails du Compte :\n";
+               donnes += " Numero du Compte "    + this.getNumero()          + "\n";
+               donnes += " Type de compte: "     + this.getType()            + "\n";
+               donnes += "- Ouverte : "          + this.isOpen()             + "\n";
                donnes += "- Date Ouverture: "    + this.getDateOuverture()   + "\n";
                donnes += "- Solde actuelle: $"   + this.getSolde()           +"\n";
                donnes += "- Client : "           + this.getClient().getNom() + " " + this.getClient().getPrenom();

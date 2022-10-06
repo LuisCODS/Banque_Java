@@ -6,12 +6,12 @@ public class Client {
     
     private int       indClient, nas;
     private String    nom, prenom;
-    public static int totalDeClient;   
+    private static int totalDeClient;   
     
     // ================== CONSTRUCTEUR ==================
 
     public Client(String nom, String prenom){
-        totalDeClient ++;
+        Client.totalDeClient = Client.totalDeClient +1;
         this.setNom(nom);
         this.setPrenom(prenom);
     }
@@ -43,7 +43,7 @@ public class Client {
         this.nas = nas;
     }
     public static int getTotalDeClient() {
-        return totalDeClient;
+        return Client.totalDeClient;
     }
 
 }
