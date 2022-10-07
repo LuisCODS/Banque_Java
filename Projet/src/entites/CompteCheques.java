@@ -1,6 +1,8 @@
 package entites;
 import java.util.Date;
-public class CompteCheques extends Compte {    
+
+public class CompteCheques extends Compte {
+    
     // Constructeur    
     public CompteCheques(Date date, Client client) 
     {                 

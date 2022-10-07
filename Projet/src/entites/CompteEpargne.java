@@ -1,10 +1,13 @@
 package entites;
 import java.util.Date;
-public class CompteEpargne extends Compte{        
+
+public class CompteEpargne extends Compte{      
+        
     // Constructeur    
     public CompteEpargne(Date date, Client client) 
     {    
-        super(date, client);        
+        super(date, client);
+                 
     }
     
     //  Methodes  

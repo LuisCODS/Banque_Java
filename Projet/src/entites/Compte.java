@@ -7,6 +7,7 @@ public abstract class Compte {
     
     // ================== ATTRIBUTS ==================
     
+    private int id_compte;
     private double  solde, salaire;
     private boolean isOpen;
     private char    type;  
@@ -18,12 +19,12 @@ public abstract class Compte {
     
     public Compte(Date date, Client client){
         
+        this.setId_compte(Compte.getTotalDeCompte() + 1);
         this.setDateOuverture(date);        
         this.setClient(client);
         this.setIsOpen(true);
         this.checkTypeCompte();
-        Compte.totalDeCompte = Compte.totalDeCompte + 1;        
-        
+        Compte.totalDeCompte = Compte.totalDeCompte + 1;               
     }
     
     // ================== MÉTHODES public ================== 
@@ -156,6 +157,15 @@ public abstract class Compte {
         }
         
     }   
+
+    public int getId_compte() {
+        return id_compte;
+    }
+    public void setId_compte(int id_compte) {
+        this.id_compte = id_compte;
+    }
+    
+    
      
     @Override
     public String toString() {
@@ -163,6 +173,7 @@ public abstract class Compte {
         String donnes = "\n";
                donnes += "============================= ";
                donnes += " Détails du Compte :\n";
+               donnes += " ID : "                + this.getId_compte()       + "\n";
                donnes += " Type de compte: "     + this.getType()            + "\n";
                donnes += "- Ouverte : "          + this.isOpen()             + "\n";
                donnes += "- Date Ouverture: "    + this.getDateOuverture()   + "\n";
