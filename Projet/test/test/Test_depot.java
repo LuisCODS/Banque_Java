@@ -15,8 +15,7 @@ public class Test_depot {
         // Polymorphisme de reference  
         Compte cheque = new CompteCheques(new Date(), client);              
 
-        System.out.println("LA BANQUE");
-        System.out.println("Total de clients : " + Client.getTotalDeClient());  
+        System.out.println("LA BANQUE");  
         System.out.println("Total de comptes : " + Compte.getTotalDeCompte()+"\n");  
 
         if (cheque.depot(montantDepot)){ 

@@ -4,7 +4,7 @@ public class Client {
     
     // ================== ATTRIBUTS ==================
     
-    private int        indClient, nas;
+    private int        nas;
     private String     nom, prenom;   
     
     // ================== CONSTRUCTEUR ==================
