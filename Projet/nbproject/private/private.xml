@@ -5,10 +5,8 @@
         <group>
             <file>file:/C:/xampp/htdocs/Banque_Java/Projet/src/entites/CompteEpargne.java</file>
             <file>file:/C:/xampp/htdocs/Banque_Java/Projet/src/entites/Client.java</file>
-            <file>file:/C:/xampp/htdocs/Banque_Java/Projet/test/test/Test_retrait.java</file>
             <file>file:/C:/xampp/htdocs/Banque_Java/Projet/src/entites/Compte.java</file>
             <file>file:/C:/xampp/htdocs/Banque_Java/Projet/src/entites/CompteCheques.java</file>
-            <file>file:/C:/xampp/htdocs/Banque_Java/Projet/test/test/Test_depot.java</file>
             <file>file:/C:/xampp/htdocs/Banque_Java/Projet/test/test/Test_transferer.java</file>
         </group>
     </open-files>
