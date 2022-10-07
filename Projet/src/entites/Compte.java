@@ -12,17 +12,18 @@ public abstract class Compte {
     private char    type;  
     private Client  client;
     private Date    dateOuverture,dateFermeture;
-    private static int numero, totalDeCompte;    
+    private static int totalDeCompte;    
     
     // ================== CONSTRUCTEUR ==================
     
     public Compte(Date date, Client client){
+        
         this.setDateOuverture(date);        
         this.setClient(client);
         this.setIsOpen(true);
         this.checkTypeCompte();
-        Compte.totalDeCompte = Compte.totalDeCompte + 1;
-        Compte.numero = Compte.numero + 1;
+        Compte.totalDeCompte = Compte.totalDeCompte + 1;        
+        
     }
     
     // ================== MÉTHODES public ================== 
@@ -155,18 +156,13 @@ public abstract class Compte {
         }
         
     }   
-
-    public static int getNumero() {
-        return Compte.numero;
-    }
-       
+     
     @Override
     public String toString() {
         
         String donnes = "\n";
                donnes += "============================= ";
                donnes += " Détails du Compte :\n";
-               donnes += " Numero du Compte "    + this.getNumero()          + "\n";
                donnes += " Type de compte: "     + this.getType()            + "\n";
                donnes += "- Ouverte : "          + this.isOpen()             + "\n";
                donnes += "- Date Ouverture: "    + this.getDateOuverture()   + "\n";
