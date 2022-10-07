@@ -95,7 +95,11 @@ public abstract class Compte {
             this.setType('C');
         }        
     }
-
+    
+    /**
+    * Crée une reference de l'entité Client dans le Compte(Agregation).
+    * @param client: c'Est une reference vers l'entité Client.
+    */
     private void setClient(Client client) {
         this.client = client;
     }    
@@ -169,8 +173,8 @@ public abstract class Compte {
         String donnes = "\n";
                donnes += "============================= ";
                donnes += " Détails du Compte :\n";
-               donnes += " ID : "                + this.getId_compte()       + "\n";
-               donnes += " Type de compte: "     + this.getType()            + "\n";
+               donnes += "- ID : "                + this.getId_compte()       + "\n";
+               donnes += "- Type de compte: "     + this.getType()            + "\n";
                donnes += "- Ouverte : "          + this.isOpen()             + "\n";
                donnes += "- Date Ouverture: "    + this.getDateOuverture()   + "\n";
                donnes += "- Solde actuelle: $"   + this.getSolde()           +"\n";

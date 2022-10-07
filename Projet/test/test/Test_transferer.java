@@ -23,7 +23,6 @@ public class Test_transferer {
         Compte epargne = new CompteEpargne(new Date(), c2);  
         
         System.out.println("LA BANQUE");
-        System.out.println("Total de clients : " + Client.getTotalDeClient());  
         System.out.println("Total de comptes : " + Compte.getTotalDeCompte()+"\n");         
         System.out.println("Solde compte " + cheque.getType()+ " AVANT tranfert : $" +cheque.getSolde());
         
