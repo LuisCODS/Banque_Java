@@ -1,5 +1,5 @@
 
-package test;
+package test_compte;
 
 import entites.Client;
 import entites.Compte;

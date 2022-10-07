@@ -1,4 +1,4 @@
-package test;
+package test_compte;
 
 import entites.CompteCheques;
 import entites.Compte;

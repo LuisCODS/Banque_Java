@@ -16,6 +16,9 @@ public class Gerant extends Employe{
         }  
     }  
 
+    public Gerant(double salaire){
+        super(salaire);
+    }
     
     public int getPassword() {
         return password;
