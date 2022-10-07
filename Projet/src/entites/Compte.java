@@ -7,19 +7,20 @@ public abstract class Compte {
     
     // ================== ATTRIBUTS ==================
     
-    private int id_compte;
-    private double  solde, salaire;
-    private boolean isOpen;
-    private char    type;  
-    private Client  client;
-    private Date    dateOuverture,dateFermeture;
-    private static int totalDeCompte;    
+    private int         id_compte;
+    private double      solde, salaire;
+    private boolean     isOpen;
+    private char        type;  
+    private Client      client;
+    private Date        dateOuverture,dateFermeture;
+    private static int  totalDeCompte;    
     
     // ================== CONSTRUCTEUR ==================
     
     public Compte(Date date, Client client){
         
-        this.setId_compte(Compte.getTotalDeCompte() + 1);
+        // Cré l'ID unique pour chaque instance automatiquemnet
+        this.id_compte = Compte.getTotalDeCompte() + 1;
         this.setDateOuverture(date);        
         this.setClient(client);
         this.setIsOpen(true);
@@ -160,12 +161,7 @@ public abstract class Compte {
 
     public int getId_compte() {
         return id_compte;
-    }
-    public void setId_compte(int id_compte) {
-        this.id_compte = id_compte;
-    }
-    
-    
+    }       
      
     @Override
     public String toString() {
